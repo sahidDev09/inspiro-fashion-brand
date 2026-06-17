@@ -74,6 +74,7 @@ export default function HeroSection() {
           src="/mountain_bg.png" 
           alt="Mountain background" 
           fill 
+          sizes="100vw"
           className="object-cover opacity-10 blur-[2px] mix-blend-overlay"
         />
       </div>
@@ -105,6 +106,7 @@ export default function HeroSection() {
           src="/assets/heromodel.png" 
           alt="Main Subject"
           fill
+          sizes="(max-width: 768px) 100vw, 1000px"
           className="object-contain object-bottom scale-[1.5] mt-20 drop-shadow-2xl"
           priority
         />
@@ -196,7 +198,7 @@ export default function HeroSection() {
                   style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}
                 >
                    <div className="relative w-full h-full" style={{ backgroundColor: card.bg, clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}>
-                      <Image src={card.src} alt={`Detail ${card.id}`} fill className="object-cover object-top mix-blend-luminosity opacity-90" />
+                      <Image src={card.src} alt={`Detail ${card.id}`} fill sizes="200px" className="object-cover object-top mix-blend-luminosity opacity-90" />
                    </div>
                 </div>
               ))}
