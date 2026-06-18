@@ -203,6 +203,9 @@ export default function HeroSection() {
                 </div>
               ))}
             </motion.div>
+            <motion.div>
+              Testing things 
+              </motion.div>
           </div>
           
           {/* Controls */}
