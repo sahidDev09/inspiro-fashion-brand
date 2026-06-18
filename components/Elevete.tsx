@@ -31,7 +31,7 @@ export default function Elevete() {
             <Image src="/assets/floating_sneaker.png" width={200} height={200} alt="Floating Sneaker" className="rotate-[-10deg] drop-shadow-2xl" />
         </div>
 
-        <Image src="/assets/elevate.png" width={600} height={500} alt="Elevate Background" className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0' />
+        <Image src="/assets/elevate.png" width={600} height={500} quality={100} unoptimized alt="Elevate Background" className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 object-contain' />
         <div className='w-full h-[90vh] flex items-center justify-center text-transparent [-webkit-text-stroke:1px_white] text-9xl uppercase font-extrabold tracking-wide mx-auto text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10'>Elevate <br /> Beyond the <br /> ordinary. </div>
     </main>
   )
