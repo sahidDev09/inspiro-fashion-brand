@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import FooterSection from '@/components/FooterSection';
+import ProductGallery from '@/components/ProductGallery';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -38,19 +39,8 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
         {/* Product Top Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
-          {/* Images */}
-          <div className="flex flex-col gap-4">
-            <div className="relative aspect-[4/5] bg-white/50 rounded-3xl overflow-hidden w-full shadow-sm border border-black/5">
-              <Image src={product.image} fill className="object-cover mix-blend-multiply" alt={product.name} priority sizes="(max-width: 1024px) 100vw, 50vw" />
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-              {[1, 2, 3].map((num) => (
-                <div key={num} className="relative aspect-[4/5] bg-white/50 rounded-2xl overflow-hidden shadow-sm border border-black/5 cursor-pointer hover:border-black/20 transition-colors">
-                  <Image src={product.image} fill className="object-cover mix-blend-multiply" alt={`${product.name} Thumbnail ${num}`} sizes="(max-width: 1024px) 33vw, 16vw" />
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Images Gallery Component */}
+          <ProductGallery images={[product.image, product.image, product.image]} alt={product.name} />
 
           {/* Product Info */}
           <div className="flex flex-col py-4">
@@ -83,7 +73,8 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
 
             {/* Actions */}
             <div className="flex gap-4 mb-4">
-              <button className="flex-1 bg-[#131313] text-white rounded-full py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#527661] transition-colors shadow-xl shadow-black/10">
+              <button className="flex-1 bg-[#131313] text-white rounded-full py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#527661] transition-colors shadow-xl shadow-black/10 flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 Add to Cart
               </button>
               <button className="w-14 h-14 shrink-0 border border-black/10 bg-white/50 rounded-full flex items-center justify-center hover:bg-white hover:border-black/30 transition-all text-black">
@@ -93,10 +84,12 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
 
             {/* Additional Actions */}
             <div className="flex gap-4 mb-12">
-              <button className="flex-1 bg-[#527661] text-white rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm">
+              <button className="flex-1 bg-[#527661] text-white border border-black/10 hover:border-black/30 rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
                 Size Charts
               </button>
-              <button className="flex-1 bg-[#527661] text-white rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm">
+              <button className="flex-1 bg-[#527661] text-white hover:bg-[#527661]/80 border border-transparent rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                 Virtual Trial
               </button>
             </div>
