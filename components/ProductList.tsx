@@ -10,24 +10,24 @@ const products = [
 
 export default function ProductList() {
   return (
-    <section className="py-24 bg-[var(--background)] border-t border-white/10">
+    <section className="py-24 border-t border-black/10">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
-        <div className="flex justify-between items-end mb-16 border-b border-white/10 pb-8">
+        <div className="flex justify-between items-end mb-16 border-b border-black/10 pb-8">
           <div className="flex items-center space-x-12">
-            <h2 className="text-3xl font-bold uppercase tracking-tight text-white">NEW COLLECTION</h2>
-            <div className="hidden md:flex flex-col text-[8px] font-mono text-white/50 tracking-widest uppercase">
+            <h2 className="text-3xl font-bold uppercase tracking-tight text-black">NEW COLLECTION</h2>
+            <div className="hidden md:flex flex-col text-[8px] font-mono text-black/50 tracking-widest uppercase">
               <span>[ NEW COLLECTION ]</span>
               <span>[ SERIES 04 ]</span>
               <span>[ SUMMER ]</span>
             </div>
-            <div className="hidden lg:flex flex-col text-[8px] font-mono text-white/50 tracking-widest uppercase">
+            <div className="hidden lg:flex flex-col text-[8px] font-mono text-black/50 tracking-widest uppercase">
               <span>PREMIUM T-SHIRTS</span>
               <span>EVERYDAY WEAR</span>
               <span>SUMMER ESSENTIALS</span>
             </div>
           </div>
-          <button className="text-[10px] font-mono tracking-widest uppercase text-white/80 border border-white/20 px-6 py-2 rounded-full hover:bg-white/10 transition-colors">
+          <button className="text-[10px] font-mono tracking-widest uppercase text-black/80 border border-black/20 px-6 py-2 rounded-full hover:bg-[#527661]/10 hover:text-[#527661] transition-colors">
             Filters
           </button>
         </div>
@@ -51,19 +51,19 @@ export default function ProductList() {
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-110 opacity-90 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100"
                   />
                   {product.discount && (
-                    <div className="absolute top-0 right-0 bg-white text-black text-[10px] font-bold px-3 py-1.5 tracking-widest z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)' }}>
+                    <div className="absolute top-0 right-0 bg-[#527661] text-white text-[10px] font-bold px-3 py-1.5 tracking-widest z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)' }}>
                       {product.discount} OFF
                     </div>
                   )}
                 </div>
               </div>
-              <div className="flex flex-col text-white mt-3 h-full">
+              <div className="flex flex-col text-black mt-3 h-full">
                 <h3 className="text-xs font-bold tracking-widest uppercase mb-1">{product.name}</h3>
-                <span className="text-[10px] text-white/60 tracking-wider uppercase font-mono">{product.color}</span>
-                <div className="flex items-baseline space-x-3 pt-3 mt-3 border-t border-white/10">
-                  <span className="text-base text-white font-bold tracking-wider font-mono">{product.price}</span>
+                <span className="text-[10px] text-black/60 tracking-wider uppercase font-mono">{product.color}</span>
+                <div className="flex items-baseline space-x-3 pt-3 mt-3 border-t border-black/10">
+                  <span className="text-base text-[#527661] font-bold tracking-wider font-mono">{product.price}</span>
                   {product.originalPrice && (
-                    <span className="text-xs text-white/40 line-through tracking-widest font-mono">{product.originalPrice}</span>
+                    <span className="text-xs text-black/40 line-through tracking-widest font-mono">{product.originalPrice}</span>
                   )}
                 </div>
               </div>

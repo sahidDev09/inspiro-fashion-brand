@@ -1,11 +1,10 @@
 "use client";
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-screen bg-white overflow-hidden font-sans pt-20 pb-10 px-4 sm:px-8 flex flex-col items-center">
+    <section className="relative w-full min-h-screen overflow-hidden font-sans pt-20 pb-10 px-4 sm:px-8 flex flex-col items-center">
       
       {/* Top Text Background */}
       <div className="w-full max-w-7xl mx-auto flex justify-between items-center relative z-10 px-4 md:px-12 pt-8 pb-4">

@@ -11,7 +11,7 @@ const SparkleIcon = () => (
 
 const Marquee = () => {
   return (
-    <div className="w-full bg-[#111111] text-white py-4 md:py-6 overflow-hidden flex relative z-20">
+    <div className="w-full bg-[#527661] text-white py-4 md:py-6 overflow-hidden flex relative z-20">
       <motion.div
         className="flex whitespace-nowrap items-center font-bold text-2xl md:text-4xl tracking-wider uppercase"
         animate={{ x: ["0%", "-50%"] }}
@@ -22,11 +22,11 @@ const Marquee = () => {
           <div key={i} className="flex items-center">
             <span>FASHION</span>
             <SparkleIcon />
-            <span>REFLECT FASHION</span>
+            <span>INSPIRO</span>
             <SparkleIcon />
-            <span>REFLECT FASHION</span>
+            <span>COMFORT</span>
             <SparkleIcon />
-            <span>REFLECT FASHION</span>
+            <span>ELEGANCE</span>
             <SparkleIcon />
           </div>
         ))}
@@ -37,14 +37,14 @@ const Marquee = () => {
 
 export default function FeaturedSection() {
   return (
-    <section className="w-full bg-[var(--background)] relative z-10 flex flex-col pb-12">
+    <section className="w-full relative z-10 flex flex-col">
       <Marquee />
 
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 w-full py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 auto-rows-[250px] lg:auto-rows-[250px] xl:auto-rows-[280px] rounded-2xl overflow-hidden border border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 auto-rows-[150px] lg:auto-rows-[250px] xl:auto-rows-[280px]">
           
           {/* Card 1: Woman Coat */}
-          <div className="col-span-1 row-span-1 md:row-span-2 relative bg-[#131313] group flex flex-col items-center justify-end overflow-hidden border border-white/5">
+          <div className="col-span-1 row-span-1 md:row-span-2 relative bg-[#131313] group flex flex-col items-center justify-end overflow-hidden rounded-[24px]">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="/assets/featured_woman_coat.png" 
@@ -58,14 +58,14 @@ export default function FeaturedSection() {
             {/* Gradient overlay for text readability */}
             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
             <div className="relative z-20 mb-8 w-full flex justify-center">
-              <button className="bg-white text-black px-8 py-3 text-sm font-semibold hover:bg-black hover:text-white transition-colors duration-300 shadow-lg w-3/4 max-w-[200px]">
+              <button className="bg-[#527661] text-white px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#3d5a49] transition-colors duration-300 shadow-lg w-3/4 max-w-[200px] flex items-center justify-center gap-2">
                 Explore Now
               </button>
             </div>
           </div>
 
           {/* Card 2: Woman Black Hat */}
-          <div className="col-span-1 row-span-1 md:row-span-2 relative bg-[#131313] group flex flex-col items-center justify-end overflow-hidden border border-white/5">
+          <div className="col-span-1 row-span-1 md:row-span-2 relative bg-[#131313] group flex flex-col items-center justify-end overflow-hidden rounded-[24px]">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="/assets/featured_woman_black_hat.png" 
@@ -79,14 +79,14 @@ export default function FeaturedSection() {
             {/* Gradient overlay for text readability */}
             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
             <div className="relative z-20 mb-8 w-full flex justify-center">
-              <button className="bg-white text-black px-8 py-3 text-sm font-semibold hover:bg-black hover:text-white transition-colors duration-300 shadow-lg w-3/4 max-w-[200px]">
+              <button className="bg-[#527661] text-white px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#3d5a49] transition-colors duration-300 shadow-lg w-3/4 max-w-[200px] flex items-center justify-center gap-1">
                 Explore Now
               </button>
             </div>
           </div>
 
           {/* Card 3: Horizontal Top */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 relative bg-[#131313] group flex items-center h-full overflow-hidden border border-white/5">
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 relative bg-[#131313] group flex items-center h-full overflow-hidden rounded-[24px]">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="/assets/featured_woman_winter_tee.png" 
@@ -103,14 +103,14 @@ export default function FeaturedSection() {
               <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-5 text-white leading-tight max-w-[250px] lg:max-w-[300px]">
                 Stylish Winter T-Shirt for Woman
               </h3>
-              <button className="border border-white/40 text-white px-6 md:px-8 py-2 md:py-2.5 text-xs md:text-sm font-semibold hover:bg-white hover:text-black transition-colors duration-300 backdrop-blur-sm">
+              <button className="bg-[#527661] text-white px-6 md:px-8 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold hover:bg-[#3d5a49] transition-colors duration-300 shadow-lg w-fit flex items-center justify-center gap-2">
                 Check Now
               </button>
             </div>
           </div>
 
           {/* Card 4: Horizontal Bottom */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 relative bg-[#131313] group flex items-center h-full overflow-hidden border border-white/5">
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 relative bg-[#131313] group flex items-center h-full overflow-hidden rounded-[24px]">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="/assets/featured_man_winter_shirt.png" 
@@ -127,7 +127,7 @@ export default function FeaturedSection() {
               <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-5 text-white leading-tight max-w-[250px] lg:max-w-[300px]">
                 Stylish Winter Shirt for Man
               </h3>
-              <button className="border border-white/40 text-white px-6 md:px-8 py-2 md:py-2.5 text-xs md:text-sm font-semibold hover:bg-white hover:text-black transition-colors duration-300 backdrop-blur-sm">
+              <button className="bg-[#527661] text-white px-6 md:px-8 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold hover:bg-[#3d5a49] transition-colors duration-300 shadow-lg w-fit flex items-center justify-center gap-2">
                 Check Now
               </button>
             </div>

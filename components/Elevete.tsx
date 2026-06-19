@@ -15,7 +15,7 @@ export default function Elevete() {
             animation: float 6s ease-in-out infinite;
           }
         `}</style>
-        <div className='w-full h-[90vh] bg-gray-900/20 flex items-center justify-center text-white text-9xl uppercase font-extrabold tracking-wide mx-auto text-center '>Elevate <br /> Beyond the <br /> ordinary. </div>
+        <div className='w-full h-[90vh] flex items-center justify-center text-[#527661] text-9xl uppercase font-extrabold tracking-wide mx-auto text-center '>Elevate <br /> Beyond the <br /> ordinary. </div>
         
         {/* Floating Items */}
         <div className="absolute top-[15%] left-[15%] opacity-80 animate-float" style={{ animationDelay: '0s' }}>
@@ -32,7 +32,7 @@ export default function Elevete() {
         </div>
 
         <Image src="/assets/elevateMain.png" width={600} height={500} quality={100} unoptimized alt="Elevate Background" className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 object-contain' />
-        <div className='w-full h-[90vh] flex items-center justify-center text-transparent [-webkit-text-stroke:1px_white] text-9xl uppercase font-extrabold tracking-wide mx-auto text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10'>Elevate <br /> Beyond the <br /> ordinary. </div>
+        <div className='w-full h-[90vh] flex items-center justify-center text-transparent [-webkit-text-stroke:1px_#527661] text-9xl uppercase font-extrabold tracking-wide mx-auto text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10'>Elevate <br /> Beyond the <br /> ordinary. </div>
     </main>
   )
 }

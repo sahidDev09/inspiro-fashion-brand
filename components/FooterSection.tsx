@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function FooterSection() {
   return (
-    <footer className="relative w-full h-[600px] overflow-hidden bg-[#2a3b4c] flex items-end">
+    <footer className="relative w-full h-[600px] overflow-hidden bg-[#527661] flex items-end">
       {/* Background Image */}
       <Image
         src="/mountain_bg.png"
@@ -13,10 +13,10 @@ export default function FooterSection() {
       />
       
       {/* Top Smooth Edge Gradient */}
-      <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-[var(--background)] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-white/80 to-transparent z-10 pointer-events-none"></div>
 
       {/* Overlay Gradient for readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#1e2a36] via-[#1e2a36]/50 to-transparent pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2c4034] via-[#2c4034]/50 to-transparent pointer-events-none"></div>
 
       {/* Giant Graffiti Text (Mimicking the STUSSY style logo) */}
       <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-full text-center mix-blend-overlay opacity-60 pointer-events-none">
