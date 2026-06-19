@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const products = [
   { id: 1, name: 'ESSENTIAL T-SHIRT', color: 'WHITE', price: '৳1,490', originalPrice: '৳1,990', discount: '25%', image: '/assets/tshirt1.jpg' },
@@ -10,7 +11,7 @@ const products = [
 
 export default function ProductList() {
   return (
-    <section className="py-24 border-t border-black/10">
+    <section className="py-10 border-t border-black/10">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         <div className="flex justify-between items-end mb-16 border-b border-black/10 pb-8">
@@ -37,7 +38,7 @@ export default function ProductList() {
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-16">
           {products.map((product) => (
-            <div key={product.id} className="group cursor-pointer flex flex-col">
+            <Link href={`/products/${product.id}`} key={product.id} className="group cursor-pointer flex flex-col">
               <div 
                 className="relative aspect-[3/4] mb-4 bg-white/10 p-1 transition-transform duration-300"
                 style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}
@@ -79,7 +80,7 @@ export default function ProductList() {
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
