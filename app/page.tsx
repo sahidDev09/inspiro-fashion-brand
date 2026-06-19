@@ -1,9 +1,9 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import FeaturedSection from '@/components/FeaturedSection';
 import ProductList from '@/components/ProductList';
 import FooterSection from '@/components/FooterSection';
 import Elevete from '@/components/Elevete';
+import FeaturedSection from '@/components/FeaturedSection';
 
 export default function Home() {
   return (
