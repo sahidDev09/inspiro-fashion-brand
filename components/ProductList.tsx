@@ -27,7 +27,10 @@ export default function ProductList() {
               <span>SUMMER ESSENTIALS</span>
             </div>
           </div>
-          <button className="text-[10px] font-mono tracking-widest uppercase text-black/80 border border-black/20 px-6 py-2 rounded-full hover:bg-[#527661]/10 hover:text-[#527661] transition-colors">
+          <button className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-white px-6 py-2 rounded-full bg-[#527661] hover:bg-[#3d5a49] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+            </svg>
             Filters
           </button>
         </div>
@@ -58,8 +61,17 @@ export default function ProductList() {
                 </div>
               </div>
               <div className="flex flex-col text-black mt-3 h-full">
-                <h3 className="text-xs font-bold tracking-widest uppercase mb-1">{product.name}</h3>
-                <span className="text-[10px] text-black/60 tracking-wider uppercase font-mono">{product.color}</span>
+                <div className="flex justify-between items-start">
+                  <div className="flex flex-col">
+                    <h3 className="text-xs font-bold tracking-widest uppercase mb-1">{product.name}</h3>
+                    <span className="text-[10px] text-black/60 tracking-wider uppercase font-mono">{product.color}</span>
+                  </div>
+                  <button className="bg-[#527661] text-white p-2 rounded-full hover:bg-[#3d5a49] transition-colors shadow-sm ml-2 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                  </button>
+                </div>
                 <div className="flex items-baseline space-x-3 pt-3 mt-3 border-t border-black/10">
                   <span className="text-base text-[#527661] font-bold tracking-wider font-mono">{product.price}</span>
                   {product.originalPrice && (
