@@ -1,228 +1,149 @@
 "use client";
 
 import Image from 'next/image';
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [prevSlide, setPrevSlide] = useState(0);
-  
-  // 7 cards with dynamic properties
-  const cards = [
-    { id: 1, src: '/assets/heromodel.png', bg: '#1A2635', colorName: 'NAVY', title: 'NIGHTFALL' },
-    { id: 2, src: '/assets/heromodel.png', bg: '#A8B5C2', colorName: 'GRAY', title: 'SUMMER 02' },
-    { id: 3, src: '/assets/heromodel.png', bg: '#8CA4B7', colorName: 'STEEL', title: 'STORM' },
-    { id: 4, src: '/assets/heromodel.png', bg: '#203144', colorName: 'DEEP BLUE', title: 'OCEAN' },
-    { id: 5, src: '/assets/heromodel.png', bg: '#5D707F', colorName: 'SLATE', title: 'URBAN' },
-    { id: 6, src: '/assets/heromodel.png', bg: '#151D28', colorName: 'BLACK', title: 'MIDNIGHT' },
-    { id: 7, src: '/assets/heromodel.png', bg: '#C5D0D8', colorName: 'SILVER', title: 'FROST' },
-  ];
-
-  const totalSlides = cards.length;
-  const activeCard = cards[currentSlide];
-  const previousCard = cards[prevSlide];
-
-  const maskRef = useRef<HTMLDivElement>(null);
-
-  const changeSlide = (newIndex: number) => {
-    if (newIndex === currentSlide) return;
-    setPrevSlide(currentSlide);
-    setCurrentSlide(newIndex);
-  };
-
-  const nextSlide = () => changeSlide((currentSlide + 1) % totalSlides);
-  const prevSlideBtn = () => changeSlide((currentSlide - 1 + totalSlides) % totalSlides);
-
-  useEffect(() => {
-    if (maskRef.current) {
-      // GSAP mask distortion animation: a slanted sweep from left to right
-      gsap.fromTo(maskRef.current,
-        { clipPath: "polygon(0 0, 0 0, -20% 100%, 0 100%)" },
-        { 
-          clipPath: "polygon(0 0, 120% 0, 100% 100%, 0 100%)", 
-          duration: 1.2, 
-          ease: "power4.inOut" 
-        }
-      );
-    }
-  }, [currentSlide]);
-
   return (
-    <section className="relative w-full min-h-screen overflow-hidden text-white pt-24 pb-16 flex flex-col justify-center font-sans">
+    <section className="relative w-full min-h-screen bg-white overflow-hidden font-sans pt-20 pb-10 px-4 sm:px-8 flex flex-col items-center">
       
-      {/* Layer 1: GSAP Background Masking */}
-      {/* Base background (previous slide) */}
-      <div 
-        className="absolute inset-0 z-0" 
-        style={{ backgroundColor: previousCard.bg }} 
-      />
-      {/* Animated mask background (current slide) */}
-      <div 
-        ref={maskRef}
-        className="absolute inset-0 z-0" 
-        style={{ backgroundColor: activeCard.bg, clipPath: "polygon(0 0, 120% 0, 100% 100%, 0 100%)" }} 
-      />
-      
-      {/* Dark overlay to ensure text readability */}
-      <div className="absolute inset-0 z-0 bg-black/20" />
-
-      {/* Layer 1.25: Mountain Background Image from Footer */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image 
-          src="/mountain_bg.png" 
-          alt="Mountain background" 
-          fill 
-          sizes="100vw"
-          className="object-cover opacity-10 blur-[2px] mix-blend-overlay"
-        />
-      </div>
-
-      {/* Layer 1.5: Spotlight Grid Overlay */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-60"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px)
-          `,
-          backgroundSize: '4vw 4vw',
-          maskImage: 'radial-gradient(ellipse 70% 60% at 50% 0%, black 0%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 0%, black 0%, transparent 100%)'
-        }}
-      />
-
-      {/* Layer 2: Blurred Text Background behind subject */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-full text-center z-10 pointer-events-none select-none flex justify-center items-center">
-        <h1 className="text-[28vw] font-black leading-none tracking-tighter text-white/10 blur-[1px] mix-blend-overlay">
-          INSPIRO
+      {/* Top Text Background */}
+      <div className="w-full max-w-7xl mx-auto flex justify-between items-center relative z-10 px-4 md:px-12 pt-8 pb-4">
+        {/* Decorative brush stroke background */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] h-12 bg-[#527661]/20 rounded-full blur-xl -z-10"></div>
+        
+        <h1 className="text-4xl md:text-6xl font-black text-gray-800 tracking-tighter uppercase flex items-baseline gap-2">
+          <span className="font-serif italic font-medium lowercase text-3xl md:text-5xl">Own the</span> EDGE
+        </h1>
+        <h1 className="text-4xl md:text-6xl font-black text-gray-800 tracking-tighter uppercase flex items-baseline gap-2">
+          <span className="font-serif italic font-medium lowercase text-3xl md:text-5xl">Keep the</span> VIBE
         </h1>
       </div>
 
-      {/* Layer 3: Main Subject Image (STATIC, no animations per user request) */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[85vh] md:w-[800px] xl:w-[1000px] z-20 pointer-events-none">
-        <Image
-          src="/assets/heromodel.png" 
-          alt="Main Subject"
-          fill
-          sizes="(max-width: 768px) 100vw, 1000px"
-          className="object-contain object-bottom scale-[1.5] mt-20 drop-shadow-2xl"
-          priority
-        />
-      </div>
-
-      {/* Layer 4: Content/UI Overlay */}
-      <div className="max-w-[1800px] mx-auto px-6 sm:px-12 w-full relative z-30 flex flex-col lg:flex-row items-center justify-between h-full">
+      {/* Main Red Card */}
+      <div className="relative w-full max-w-7xl mx-auto bg-[#527661] rounded-[40px] mt-8 p-8 md:p-12 min-h-[600px] flex flex-col md:flex-row justify-between items-stretch z-20">
         
-        {/* Left Side: Text and CTA */}
-        <div className="lg:w-[40%] flex flex-col items-start mt-12 lg:mt-0 z-30">
-          <AnimatePresence mode="wait">
-            <motion.h2 
-              key={activeCard.title}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-bold uppercase tracking-tight leading-[0.9] mb-16"
-            >
-              COLLECTION<br/>
-              {activeCard.title}<sup className="text-2xl lg:text-4xl font-normal tracking-normal align-top top-[-0.5em] relative -ml-2">™</sup>
-            </motion.h2>
-          </AnimatePresence>
+        {/* Subtle brush stroke pattern in the background of the red card */}
+        <div className="absolute inset-0 overflow-hidden rounded-[40px] pointer-events-none opacity-20">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="brush" width="100" height="20" patternUnits="userSpaceOnUse">
+                <path d="M0,10 Q25,0 50,10 T100,10" fill="none" stroke="#ffffff" strokeWidth="8" strokeLinecap="round"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#brush)"/>
+          </svg>
+        </div>
 
-          <div className="space-y-6 text-sm lg:text-base font-medium tracking-wider uppercase mb-20 w-full max-w-md">
-            <div className="flex items-center">
-              <span className="text-white/60 w-24 text-xs tracking-widest">SIZE</span>
-              <div className="flex space-x-6 text-white/80">
-                <span className="cursor-pointer hover:text-white border-b-2 border-white pb-1 text-white">S</span>
-                <span className="cursor-pointer hover:text-white">M</span>
-                <span className="cursor-pointer hover:text-white">L</span>
-                <span className="cursor-pointer hover:text-white">XL</span>
-              </div>
-            </div>
+        {/* Main Subject Image - Bottom attached, top overflowing */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 -top-32 bottom-0 w-[500px] md:w-[750px] lg:w-[900px] z-10 pointer-events-none flex justify-center items-end">
+          <div className="relative w-full h-full">
+            <Image
+              src="/assets/heroModels.png" 
+              alt="Main Model"
+              fill
+              className="object-contain object-bottom drop-shadow-2xl"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Left Content */}
+        <div className="relative z-30 flex flex-col justify-between max-w-sm">
+          <div>
+            <p className="text-white/90 text-sm font-semibold mb-4 tracking-wide">New Arrivals</p>
+            <h2 className="text-5xl font-bold text-white leading-[1.1] mb-6">
+              Where Art Meets<br/>your Style
+            </h2>
+            <p className="text-white/90 text-lg mb-8 leading-relaxed">
+              Step into the future of<br/>streetwear today.
+            </p>
             
-            <div className="flex items-center pt-2">
-              <span className="text-white/60 w-24 text-xs tracking-widest">COLOR</span>
-              <div className="flex space-x-6 text-white/80">
-                <AnimatePresence mode="wait">
-                  <motion.span 
-                    key={activeCard.colorName}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="cursor-pointer border-b-2 border-white pb-1 text-white"
-                  >
-                    {activeCard.colorName}
-                  </motion.span>
-                </AnimatePresence>
-                <span className="cursor-pointer hover:text-white text-white/50 pl-4" onClick={nextSlide}>NEXT &gt;</span>
-              </div>
-            </div>
+            <button className="bg-white text-[#527661] px-6 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-50 transition-colors shadow-sm w-fit">
+              New Drops
+              <span className="bg-[#527661] text-white rounded-full p-1 w-6 h-6 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                </svg>
+              </span>
+            </button>
           </div>
 
-          <div className="flex items-center group cursor-pointer mt-4">
-            <div className="h-20 w-20 flex items-center justify-center mr-6 relative transition-transform duration-300 group-hover:scale-105">
-              <svg className="absolute inset-0 w-full h-full text-white/20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <polygon points="50,2 90,25 90,75 50,98 10,75 10,25" stroke="currentColor" strokeWidth="1" fill="rgba(255,255,255,0.02)"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform -rotate-45 relative z-10 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+          <div className="bg-white/20 backdrop-blur-md rounded-2xl p-4 mt-12 flex flex-col gap-3 w-[240px] border border-white/30">
+            <div className="flex -space-x-3">
+               {[1,2,3,4].map((i) => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-[#527661] overflow-hidden bg-gray-200">
+                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="avatar" className="w-full h-full object-cover" />
+                  </div>
+               ))}
             </div>
-            <div className="flex flex-col">
-              <span className="text-xs text-white/60 uppercase tracking-[0.2em] mb-1">STARTS FROM —</span>
-              <span className="text-3xl font-bold tracking-tight">৳499 BDT</span>
+            <div className="flex items-center gap-2">
+              <span className="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+                </svg>
+              </span>
+              <p className="text-white text-xs font-medium leading-tight">
+                Rated 5 Stars by<br/>The Vybe Tribe
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Center: Empty Space for Subject to poke through */}
-        <div className="lg:w-[20%] h-[40vh] lg:h-auto pointer-events-none"></div>
-
-        {/* Right Side: Thumbnails */}
-        <div className="lg:w-[40%] flex flex-col justify-end items-end h-full mt-16 lg:mt-0 z-30 overflow-hidden lg:overflow-visible">
+        {/* Right Content */}
+        <div className="relative z-30 flex flex-col justify-between items-end max-w-sm mt-12 md:mt-0">
           
-          <div className="w-[344px] xl:w-[384px] overflow-hidden mb-8 mask-image-fade">
-            <motion.div 
-              className="flex space-x-6"
-              animate={{ x: -(currentSlide * (160 + 24)) }} 
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              {cards.map((card, index) => (
-                <div 
-                  key={card.id} 
-                  onClick={() => changeSlide(index)}
-                  className={`flex-shrink-0 relative w-[160px] h-[200px] xl:w-[180px] xl:h-[220px] p-1 cursor-pointer transition-transform duration-300 ${currentSlide === index ? 'bg-white/40 scale-105' : 'bg-white/10 hover:bg-white/20'}`} 
-                  style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}
-                >
-                   <div className="relative w-full h-full" style={{ backgroundColor: card.bg, clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}>
-                      <Image src={card.src} alt={`Detail ${card.id}`} fill sizes="200px" className="object-cover object-top mix-blend-luminosity opacity-90" />
-                   </div>
-                </div>
-              ))}
-            </motion.div>
-            <motion.div>
-              Testing things 
-              </motion.div>
+          <div className="flex gap-8 text-white/90">
+            <div className="flex flex-col items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
+              </svg>
+              <span className="text-xs text-center font-medium">Future<br/>Threads</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385c.148.621-.531 1.114-1.075.793L12 18.57a.563.563 0 00-.546 0l-4.78 2.532c-.544.321-1.223-.172-1.075-.793l1.285-5.385a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+              <span className="text-xs text-center font-medium">Unique<br/>Designs</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-xs text-center font-medium">Limited<br/>Drops</span>
+            </div>
           </div>
-          
-          {/* Controls */}
-          <div className="flex items-center space-x-4 w-[344px] xl:w-[384px] text-xs text-white/50 font-mono mt-2 pr-4 justify-between select-none">
-            <button onClick={prevSlideBtn} className="w-8 h-8 flex items-center justify-center border border-white/20 hover:bg-white/10 hover:text-white transition-colors cursor-pointer z-40">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <span className="tracking-widest">0{currentSlide + 1}</span>
-            <div className="flex-grow h-px bg-white/20 mx-4"></div>
-            <span className="tracking-widest">07</span>
-            <button onClick={nextSlide} className="w-8 h-8 flex items-center justify-center border border-white/20 hover:bg-white/10 hover:text-white transition-colors cursor-pointer z-40">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
+
+          <div className="flex flex-col items-center mt-12 w-[240px]">
+            <h3 className="text-white font-bold mb-4 tracking-wide">Best Selling</h3>
+            <div className="bg-white rounded-[24px] p-2 w-full shadow-xl">
+              <div className="rounded-[20px] overflow-hidden bg-gray-100 aspect-[4/5] relative mb-4">
+                <Image 
+                  src="/assets/featured_woman_winter_tee.png" 
+                  alt="Featured Product" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+              <div className="px-2 pb-2 text-center">
+                <h4 className="text-gray-800 font-bold text-[15px]">Urban Vanguard Tee</h4>
+                <p className="text-gray-500 text-xs mt-1 mb-4">Unmatched comfort.</p>
+                <div className="flex justify-center">
+                  <div className="bg-[#527661] text-white text-sm font-semibold py-1.5 px-4 rounded-full flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    ৳799 BDT
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
+      
     </section>
   );
 }
