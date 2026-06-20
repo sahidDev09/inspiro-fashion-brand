@@ -119,7 +119,7 @@ export default function HeroSection() {
             <div className="bg-white rounded-[24px] p-2 w-full shadow-xl">
               <div className="rounded-[20px] overflow-hidden bg-gray-100 aspect-[4/5] relative mb-4">
                 <Image 
-                  src="/assets/featured_woman_winter_tee.png" 
+                  src="/assets/hrimitaModel2.jpeg" 
                   alt="Featured Product" 
                   fill 
                   className="object-cover"
