@@ -72,25 +72,17 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
             </div>
 
             {/* Actions */}
-            <div className="flex gap-4 mb-4">
+            <div className="flex gap-4 mb-12">
               <button className="flex-1 bg-[#131313] text-white rounded-full py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#527661] transition-colors shadow-xl shadow-black/10 flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 Add to Cart
               </button>
-              <button className="w-14 h-14 shrink-0 border border-black/10 bg-white/50 rounded-full flex items-center justify-center hover:bg-white hover:border-black/30 transition-all text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              </button>
-            </div>
-
-            {/* Additional Actions */}
-            <div className="flex gap-4 mb-12">
-              <button className="flex-1 bg-[#527661] text-white border border-black/10 hover:border-black/30 rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
-                Size Charts
-              </button>
               <button className="flex-1 bg-[#527661] text-white hover:bg-[#527661]/80 border border-transparent rounded-full py-4 text-xs font-bold tracking-widest uppercase transition-colors shadow-sm flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                 Virtual Trial
+              </button>
+              <button className="w-14 h-14 shrink-0 border border-black/10 bg-white/50 rounded-full flex items-center justify-center hover:bg-white hover:border-black/30 transition-all text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
 
@@ -143,6 +135,57 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
                       <p className="text-sm font-bold">10-12 Oct 2024</p>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Size Chart Section */}
+              <div className="py-8">
+                <h3 className="font-bold text-lg text-black/80 mb-6">Size chart - In inches (Expected Deviation &lt; 3%)</h3>
+                
+                {/* Tabs */}
+                <div className="flex gap-2 border-b border-black/10 relative">
+                  <button className="px-6 py-3 bg-white border border-black/10 border-b-white rounded-t-md font-mono text-sm z-10 -mb-[1px]">INCH</button>
+                  <button className="px-6 py-3 bg-black/5 rounded-t-md font-mono text-sm border border-transparent">CM</button>
+                </div>
+
+                {/* Table */}
+                <div className="mt-6 overflow-x-auto overflow-hidden">
+                  <table className="w-full text-left font-mono text-sm">
+                    <thead>
+                      <tr className="bg-black/5 text-black">
+                        <th className="p-4 font-bold border-b border-r border-white">Size</th>
+                        <th className="p-4 font-bold border-b border-r border-white">Chest (round)</th>
+                        <th className="p-4 font-bold border-b border-r border-white">Length</th>
+                        <th className="p-4 font-bold border-b border-white">Sleeve</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-black/5 text-black/80">
+                      <tr>
+                        <td className="p-4 border-b border-r border-white">M</td>
+                        <td className="p-4 border-b border-r border-white">39</td>
+                        <td className="p-4 border-b border-r border-white">27.5</td>
+                        <td className="p-4 border-b border-white">8.5</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border-b border-r border-white">L</td>
+                        <td className="p-4 border-b border-r border-white">40.5</td>
+                        <td className="p-4 border-b border-r border-white">28</td>
+                        <td className="p-4 border-b border-white">8.75</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border-b border-r border-white">XL</td>
+                        <td className="p-4 border-b border-r border-white">43</td>
+                        <td className="p-4 border-b border-r border-white">29</td>
+                        <td className="p-4 border-b border-white">9</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border-r border-white">2XL</td>
+                        <td className="p-4 border-r border-white">45</td>
+                        <td className="p-4 border-r border-white">30</td>
+                        <td className="p-4">9.25</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
