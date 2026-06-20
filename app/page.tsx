@@ -7,7 +7,7 @@ import FeaturedSection from '@/components/FeaturedSection';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] selection:bg-white selection:text-[var(--background)]">
+    <div className="flex flex-col min-h-screen selection:bg-white selection:text-black">
       <Navbar />
       
       <main className="flex-grow">

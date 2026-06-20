@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const products = [
   { id: 1, name: 'ESSENTIAL T-SHIRT', color: 'WHITE', price: '৳1,490', originalPrice: '৳1,990', discount: '25%', image: '/assets/tshirt1.jpg' },
@@ -10,31 +11,34 @@ const products = [
 
 export default function ProductList() {
   return (
-    <section className="py-24 bg-[var(--background)] border-t border-white/10">
+    <section className="py-10 border-t border-black/10">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
-        <div className="flex justify-between items-end mb-16 border-b border-white/10 pb-8">
+        <div className="flex justify-between items-end mb-16 border-b border-black/10 pb-8">
           <div className="flex items-center space-x-12">
-            <h2 className="text-3xl font-bold uppercase tracking-tight text-white">NEW COLLECTION</h2>
-            <div className="hidden md:flex flex-col text-[8px] font-mono text-white/50 tracking-widest uppercase">
+            <h2 className="text-3xl font-bold uppercase tracking-tight text-black">NEW COLLECTION</h2>
+            <div className="hidden md:flex flex-col text-[8px] font-mono text-black/50 tracking-widest uppercase">
               <span>[ NEW COLLECTION ]</span>
               <span>[ SERIES 04 ]</span>
               <span>[ SUMMER ]</span>
             </div>
-            <div className="hidden lg:flex flex-col text-[8px] font-mono text-white/50 tracking-widest uppercase">
+            <div className="hidden lg:flex flex-col text-[8px] font-mono text-black/50 tracking-widest uppercase">
               <span>PREMIUM T-SHIRTS</span>
               <span>EVERYDAY WEAR</span>
               <span>SUMMER ESSENTIALS</span>
             </div>
           </div>
-          <button className="text-[10px] font-mono tracking-widest uppercase text-white/80 border border-white/20 px-6 py-2 rounded-full hover:bg-white/10 transition-colors">
+          <button className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-white px-6 py-2 rounded-full bg-[#527661] hover:bg-[#3d5a49] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+            </svg>
             Filters
           </button>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-16">
           {products.map((product) => (
-            <div key={product.id} className="group cursor-pointer flex flex-col">
+            <Link href={`/products/${product.id}`} key={product.id} className="group cursor-pointer flex flex-col">
               <div 
                 className="relative aspect-[3/4] mb-4 bg-white/10 p-1 transition-transform duration-300"
                 style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%)' }}
@@ -51,23 +55,32 @@ export default function ProductList() {
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-110 opacity-90 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100"
                   />
                   {product.discount && (
-                    <div className="absolute top-0 right-0 bg-white text-black text-[10px] font-bold px-3 py-1.5 tracking-widest z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)' }}>
+                    <div className="absolute top-0 right-0 bg-[#527661] text-white text-[10px] font-bold px-3 py-1.5 tracking-widest z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 15% 100%)' }}>
                       {product.discount} OFF
                     </div>
                   )}
                 </div>
               </div>
-              <div className="flex flex-col text-white mt-3 h-full">
-                <h3 className="text-xs font-bold tracking-widest uppercase mb-1">{product.name}</h3>
-                <span className="text-[10px] text-white/60 tracking-wider uppercase font-mono">{product.color}</span>
-                <div className="flex items-baseline space-x-3 pt-3 mt-3 border-t border-white/10">
-                  <span className="text-base text-white font-bold tracking-wider font-mono">{product.price}</span>
+              <div className="flex flex-col text-black mt-3 h-full">
+                <div className="flex justify-between items-start">
+                  <div className="flex flex-col">
+                    <h3 className="text-xs font-bold tracking-widest uppercase mb-1">{product.name}</h3>
+                    <span className="text-[10px] text-black/60 tracking-wider uppercase font-mono">{product.color}</span>
+                  </div>
+                  <button className="bg-[#527661] text-white p-2 rounded-full hover:bg-[#3d5a49] transition-colors shadow-sm ml-2 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="flex items-baseline space-x-3 pt-3 mt-3 border-t border-black/10">
+                  <span className="text-base text-[#527661] font-bold tracking-wider font-mono">{product.price}</span>
                   {product.originalPrice && (
-                    <span className="text-xs text-white/40 line-through tracking-widest font-mono">{product.originalPrice}</span>
+                    <span className="text-xs text-black/40 line-through tracking-widest font-mono">{product.originalPrice}</span>
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

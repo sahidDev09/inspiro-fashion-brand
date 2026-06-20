@@ -28,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col relative overflow-x-hidden">
+        {/* Global Background Gradient */}
+        <div className="fixed inset-0 -z-10 h-full w-full bg-gradient-to-br from-green-100 via-white to-green-50 pointer-events-none" />
         <SmoothScroll>
           {children}
         </SmoothScroll>
