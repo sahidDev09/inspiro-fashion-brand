@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import FooterSection from '@/components/FooterSection';
 import ProductGallery from '@/components/ProductGallery';
+import SizeChart from '@/components/SizeChart';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -139,55 +140,7 @@ export default async function ProductDetails({ params }: { params: Promise<{ id:
               </div>
 
               {/* Size Chart Section */}
-              <div className="py-8">
-                <h3 className="font-bold text-lg text-black/80 mb-6">Size chart - In inches (Expected Deviation &lt; 3%)</h3>
-                
-                {/* Tabs */}
-                <div className="flex gap-2 border-b border-black/10 relative">
-                  <button className="px-6 py-3 bg-white border border-black/10 border-b-white rounded-t-md font-mono text-sm z-10 -mb-[1px]">INCH</button>
-                  <button className="px-6 py-3 bg-black/5 rounded-t-md font-mono text-sm border border-transparent">CM</button>
-                </div>
-
-                {/* Table */}
-                <div className="mt-6 overflow-x-auto overflow-hidden">
-                  <table className="w-full text-left font-mono text-sm">
-                    <thead>
-                      <tr className="bg-black/5 text-black">
-                        <th className="p-4 font-bold border-b border-r border-white">Size</th>
-                        <th className="p-4 font-bold border-b border-r border-white">Chest (round)</th>
-                        <th className="p-4 font-bold border-b border-r border-white">Length</th>
-                        <th className="p-4 font-bold border-b border-white">Sleeve</th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-black/5 text-black/80">
-                      <tr>
-                        <td className="p-4 border-b border-r border-white">M</td>
-                        <td className="p-4 border-b border-r border-white">39</td>
-                        <td className="p-4 border-b border-r border-white">27.5</td>
-                        <td className="p-4 border-b border-white">8.5</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border-b border-r border-white">L</td>
-                        <td className="p-4 border-b border-r border-white">40.5</td>
-                        <td className="p-4 border-b border-r border-white">28</td>
-                        <td className="p-4 border-b border-white">8.75</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border-b border-r border-white">XL</td>
-                        <td className="p-4 border-b border-r border-white">43</td>
-                        <td className="p-4 border-b border-r border-white">29</td>
-                        <td className="p-4 border-b border-white">9</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border-r border-white">2XL</td>
-                        <td className="p-4 border-r border-white">45</td>
-                        <td className="p-4 border-r border-white">30</td>
-                        <td className="p-4">9.25</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <SizeChart />
             </div>
 
           </div>
