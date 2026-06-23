@@ -1,6 +1,115 @@
+'use client';
+
 import Link from 'next/link';
+import { useRef, useCallback } from 'react';
+import gsap from 'gsap';
+
+interface NavItem {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+const navItems: NavItem[] = [
+  { label: 'Man', href: '#' },
+  { label: 'Unisex', href: '#' },
+  {
+    label: 'Polo Shirt',
+    href: '#',
+    children: [
+      { label: 'Knitted Polo', href: '#' },
+      { label: 'Old Money Polo', href: '#' },
+    ],
+  },
+  {
+    label: 'T-Shirt',
+    href: '#',
+    children: [
+      { label: 'Dropshoulder T-Shirt', href: '#' },
+      { label: 'Inspiro Edition', href: '#' },
+      { label: 'Sports T-Shirt', href: '#' },
+      { label: 'Premium Solid', href: '#' },
+    ],
+  },
+  { label: 'Summer', href: '#' },
+  { label: 'Winter', href: '#' },
+  { label: 'Eid Collection', href: '#' },
+];
 
 export default function Navbar() {
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const closeTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const tweens = useRef<Record<string, gsap.core.Tween>>({});
+
+  const openDropdown = useCallback((label: string) => {
+    // Clear any pending close timer
+    if (closeTimers.current[label]) {
+      clearTimeout(closeTimers.current[label]);
+      delete closeTimers.current[label];
+    }
+
+    const dropdown = dropdownRefs.current[label];
+    const children = dropdown?.querySelectorAll('.dropdown-item');
+    if (!dropdown) return;
+
+    // Kill any running tween
+    tweens.current[label]?.kill();
+
+    // Make visible and animate in
+    gsap.set(dropdown, { display: 'block', pointerEvents: 'auto' });
+
+    tweens.current[label] = gsap.to(dropdown, {
+      opacity: 1,
+      y: 0,
+      scaleY: 1,
+      duration: 0.35,
+      ease: 'power3.out',
+    });
+
+    // Stagger animate children
+    if (children && children.length > 0) {
+      gsap.fromTo(
+        children,
+        { opacity: 0, x: -8 },
+        { opacity: 1, x: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out', delay: 0.1 }
+      );
+    }
+
+    // Animate the arrow on the trigger
+    const arrow = itemRefs.current[label]?.querySelector('.dropdown-arrow');
+    if (arrow) {
+      gsap.to(arrow, { rotation: 180, duration: 0.3, ease: 'power2.out' });
+    }
+  }, []);
+
+  const closeDropdown = useCallback((label: string) => {
+    // Delay close to allow cursor to move to dropdown
+    closeTimers.current[label] = setTimeout(() => {
+      const dropdown = dropdownRefs.current[label];
+      if (!dropdown) return;
+
+      tweens.current[label]?.kill();
+
+      tweens.current[label] = gsap.to(dropdown, {
+        opacity: 0,
+        y: -8,
+        scaleY: 0.95,
+        duration: 0.25,
+        ease: 'power2.in',
+        onComplete: () => {
+          gsap.set(dropdown, { display: 'none', pointerEvents: 'none' });
+        },
+      });
+
+      // Reverse arrow
+      const arrow = itemRefs.current[label]?.querySelector('.dropdown-arrow');
+      if (arrow) {
+        gsap.to(arrow, { rotation: 0, duration: 0.25, ease: 'power2.in' });
+      }
+    }, 80);
+  }, []);
+
   return (
     <nav className="fixed top-0 z-50 w-full px-8 py-6 bg-gradient-to-r from-green-100/90 to-white/90 backdrop-blur-md border-b border-black/5 transition-all">
       <div className="flex justify-between items-center text-black/80 text-xs font-mono tracking-widest uppercase">
@@ -9,13 +118,51 @@ export default function Navbar() {
             inspiro
           </span>
         </Link>
-        
-        <div className="hidden md:flex space-x-12 items-center">
-          <Link href="#" className="hover:text-[#527661] transition-colors">Catalog ⇂</Link>
-          <Link href="#" className="hover:text-[#527661] transition-colors">Men ⇂</Link>
-          <Link href="#" className="hover:text-[#527661] transition-colors">Food ⇂</Link>
-          <Link href="#" className="hover:text-[#527661] transition-colors">Catalog ⇂</Link>
-          <Link href="#" className="hover:text-[#527661] transition-colors">Partners ⇂</Link>
+
+        <div className="hidden md:flex space-x-8 items-center">
+          {navItems.map((item) => (
+            <div
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => item.children && openDropdown(item.label)}
+              onMouseLeave={() => item.children && closeDropdown(item.label)}
+            >
+              <Link
+                href={item.href}
+                ref={(el) => {
+                  if (item.children) itemRefs.current[item.label] = el;
+                }}
+                className="hover:text-[#527661] transition-colors flex items-center gap-1"
+              >
+                {item.label}
+                {item.children && (
+                  <span className="dropdown-arrow inline-block text-[10px] origin-center">⇂</span>
+                )}
+              </Link>
+
+              {item.children && (
+                <div
+                  ref={(el) => {
+                    dropdownRefs.current[item.label] = el;
+                  }}
+                  className="absolute top-full left-0 pt-3 min-w-[220px] z-50"
+                  style={{ display: 'none', opacity: 0, transform: 'translateY(-8px) scaleY(0.95)', pointerEvents: 'none', transformOrigin: 'top center' }}
+                >
+                  <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-black/5 py-2 overflow-hidden">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        className="dropdown-item block px-5 py-2.5 text-[11px] tracking-wider text-black/70 hover:text-[#527661] hover:bg-green-50/60 hover:pl-7 transition-all duration-200"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         <div className="flex items-center space-x-4">
