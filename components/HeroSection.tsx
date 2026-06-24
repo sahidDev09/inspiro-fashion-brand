@@ -19,7 +19,7 @@ export default function HeroSection() {
         </h1>
       </div>
 
-      {/* Main Red Card */}
+      {/* Main Green Card */}
       <div className="relative w-full max-w-7xl mx-auto bg-[#527661] rounded-[40px] mt-8 p-8 md:p-12 min-h-[600px] flex flex-col md:flex-row justify-between items-stretch z-20">
         
         {/* Subtle brush stroke pattern in the background of the red card */}

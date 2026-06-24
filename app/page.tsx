@@ -4,6 +4,8 @@ import ProductList from '@/components/ProductList';
 import FooterSection from '@/components/FooterSection';
 import Elevete from '@/components/Elevete';
 import FeaturedSection from '@/components/FeaturedSection';
+import CustomerReviews from '@/components/CustomerReviews';
+import NewsletterSection from '@/components/NewsletterSection';
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
         <FeaturedSection />
         <ProductList />
         <Elevete/>
+        <CustomerReviews />
+        <NewsletterSection />
       </main>
 
       <FooterSection />

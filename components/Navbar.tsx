@@ -11,29 +11,29 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Man', href: '#' },
-  { label: 'Unisex', href: '#' },
+  { label: 'Man', href: '/category/man' },
+  { label: 'Unisex', href: '/category/unisex' },
   {
     label: 'Polo Shirt',
-    href: '#',
+    href: '/category/polo-shirt',
     children: [
-      { label: 'Knitted Polo', href: '#' },
-      { label: 'Old Money Polo', href: '#' },
+      { label: 'Knitted Polo', href: '/category/knitted-polo' },
+      { label: 'Old Money Polo', href: '/category/old-money-polo' },
     ],
   },
   {
     label: 'T-Shirt',
-    href: '#',
+    href: '/category/tshirt',
     children: [
-      { label: 'Dropshoulder T-Shirt', href: '#' },
-      { label: 'Inspiro Edition', href: '#' },
-      { label: 'Sports T-Shirt', href: '#' },
-      { label: 'Premium Solid', href: '#' },
+      { label: 'Dropshoulder T-Shirt', href: '/category/dropshoulder-tshirt' },
+      { label: 'Inspiro Edition', href: '/category/inspiro-edition' },
+      { label: 'Sports T-Shirt', href: '/category/sports-tshirt' },
+      { label: 'Premium Solid', href: '/category/premium-solid' },
     ],
   },
-  { label: 'Summer', href: '#' },
-  { label: 'Winter', href: '#' },
-  { label: 'Eid Collection', href: '#' },
+  { label: 'Summer', href: '/category/summer' },
+  { label: 'Winter', href: '/category/winter' },
+  { label: 'Eid Collection', href: '/category/eid-collection' },
 ];
 
 export default function Navbar() {
