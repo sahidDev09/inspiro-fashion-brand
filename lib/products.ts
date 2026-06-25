@@ -3,11 +3,30 @@ export interface Product {
   name: string;
   color: string;
   price: string;
+  numericPrice: number;
   originalPrice: string;
   discount: string;
   image: string;
   categories: string[];
+  colors: string[];
+  sizes: string[];
 }
+
+export const filterColors = [
+  'Multicolor', 'Sky Blue', 'Mint', 'Biscuit', 'Slate Blue',
+  'Pastel Orange', 'Off White', 'Blue', 'Black', 'Navy', 'Green', 'Grey', 'White', 'Cream',
+];
+
+export const filterPriceRanges = [
+  { label: '100 To 300', min: 100, max: 300 },
+  { label: '301 To 500', min: 301, max: 500 },
+  { label: '501 To 1000', min: 501, max: 1000 },
+  { label: '1001 To 2500', min: 1001, max: 2500 },
+  { label: '2501 To 5000', min: 2501, max: 5000 },
+  { label: '5001 To 10000', min: 5001, max: 10000 },
+];
+
+export const filterSizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
 export const products: Product[] = [
   {
@@ -15,80 +34,104 @@ export const products: Product[] = [
     name: 'ESSENTIAL T-SHIRT',
     color: 'WHITE',
     price: '৳1,490',
+    numericPrice: 1490,
     originalPrice: '৳1,990',
     discount: '25%',
     image: '/assets/tshirt1.jpg',
     categories: ['man', 'tshirt', 'premium-solid', 'summer'],
+    colors: ['White', 'Off White'],
+    sizes: ['M', 'L', 'XL'],
   },
   {
     id: 2,
     name: 'OVERSIZED TEE',
     color: 'WASHED BLACK',
     price: '৳1,890',
+    numericPrice: 1890,
     originalPrice: '৳2,290',
     discount: '18%',
     image: '/assets/tshirt2.jpg',
     categories: ['unisex', 'tshirt', 'dropshoulder-tshirt', 'summer'],
+    colors: ['Black', 'Grey'],
+    sizes: ['M', 'L', 'XL', 'XXL'],
   },
   {
     id: 3,
     name: 'GRAPHIC PRINT',
     color: 'VINTAGE GREY',
     price: '৳2,190',
+    numericPrice: 2190,
     originalPrice: '৳2,690',
     discount: '18%',
     image: '/assets/tshirt3.jpg',
     categories: ['man', 'tshirt', 'inspiro-edition', 'summer'],
+    colors: ['Grey', 'Multicolor'],
+    sizes: ['S', 'M', 'L', 'XL'],
   },
   {
     id: 4,
     name: 'CLASSIC CREWNECK',
     color: 'NAVY BLUE',
     price: '৳1,490',
+    numericPrice: 1490,
     originalPrice: '৳1,990',
     discount: '25%',
     image: '/assets/tshirt4.jpg',
     categories: ['man', 'tshirt', 'premium-solid', 'winter'],
+    colors: ['Navy', 'Blue'],
+    sizes: ['M', 'L', 'XL'],
   },
   {
     id: 5,
     name: 'HEAVYWEIGHT TEE',
     color: 'FOREST GREEN',
     price: '৳2,490',
+    numericPrice: 2490,
     originalPrice: '৳2,990',
     discount: '16%',
     image: '/assets/tshirt5.jpg',
     categories: ['man', 'tshirt', 'sports-tshirt', 'summer', 'eid-collection'],
+    colors: ['Green'],
+    sizes: ['M', 'L', 'XL', 'XXL'],
   },
   {
     id: 6,
     name: 'KNITTED POLO CLASSIC',
     color: 'OLIVE GREEN',
     price: '৳2,290',
+    numericPrice: 2290,
     originalPrice: '৳2,790',
     discount: '18%',
     image: '/assets/tshirt1.jpg',
     categories: ['man', 'polo-shirt', 'knitted-polo', 'summer'],
+    colors: ['Green', 'Off White'],
+    sizes: ['S', 'M', 'L', 'XL'],
   },
   {
     id: 7,
     name: 'OLD MONEY POLO',
     color: 'CREAM WHITE',
     price: '৳2,690',
+    numericPrice: 2690,
     originalPrice: '৳3,190',
     discount: '16%',
     image: '/assets/tshirt3.jpg',
     categories: ['man', 'polo-shirt', 'old-money-polo', 'summer', 'eid-collection'],
+    colors: ['Cream', 'Off White'],
+    sizes: ['M', 'L', 'XL'],
   },
   {
     id: 8,
     name: 'WINTER LAYER TEE',
     color: 'CHARCOAL',
     price: '৳1,990',
+    numericPrice: 1990,
     originalPrice: '৳2,490',
     discount: '20%',
     image: '/assets/tshirt4.jpg',
     categories: ['unisex', 'tshirt', 'premium-solid', 'winter'],
+    colors: ['Black', 'Grey'],
+    sizes: ['S', 'M', 'L'],
   },
 ];
 
